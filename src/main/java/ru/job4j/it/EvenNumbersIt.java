@@ -13,13 +13,10 @@ public class EvenNumbersIt implements Iterator<Integer> {
 
 	@Override
 	public boolean hasNext() {
-		if (pointer == data.length) {
-			return false;
-		} else if (data[pointer] % 2 != 0) {
-			return findEvenNumbers();
-		} else {
-			return true;
+		while (pointer < data.length && data[pointer] % 2 != 0) {
+			pointer++;
 		}
+		return pointer < data.length;
 	}
 
 	@Override
@@ -28,14 +25,5 @@ public class EvenNumbersIt implements Iterator<Integer> {
 			throw new NoSuchElementException();
 		}
 		return data[pointer++];
-	}
-
-	public boolean findEvenNumbers() {
-		for (; pointer < data.length; pointer++) {
-			if (data[pointer] % 2 == 0) {
-				return true;
-			}
-		}
-		return false;
 	}
 }

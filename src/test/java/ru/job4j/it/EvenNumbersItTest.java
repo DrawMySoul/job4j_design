@@ -14,7 +14,7 @@ public class EvenNumbersItTest {
 
 	@Before
 	public void setUp() {
-		it = new EvenNumbersIt(new int[] {1, 2, 3, 4, 5, 6, 7});
+		it = new EvenNumbersIt(new int[]{1, 2, 3, 4, 5, 6, 7});
 	}
 
 	@Test(expected = NoSuchElementException.class)
@@ -39,14 +39,14 @@ public class EvenNumbersItTest {
 	}
 
 	@Test
-	public void  shouldReturnFalseIfNoAnyEvenNumbers() {
+	public void shouldReturnFalseIfNoAnyEvenNumbers() {
 		it = new EvenNumbersIt(new int[]{1});
 		assertThat(it.hasNext(), is(false));
 	}
 
 	@Test
 	public void allNumbersAreEven() {
-		it = new EvenNumbersIt(new int[] {2, 4, 6, 8});
+		it = new EvenNumbersIt(new int[]{2, 4, 6, 8});
 		assertThat(it.hasNext(), is(true));
 		assertThat(it.next(), is(2));
 		assertThat(it.hasNext(), is(true));
