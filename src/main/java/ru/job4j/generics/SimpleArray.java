@@ -1,6 +1,5 @@
 package ru.job4j.generics;
 
-import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -8,8 +7,8 @@ public class SimpleArray<T> implements Iterable<T> {
 	private T[] array;
 	private int length = 0;
 
-	public SimpleArray(Class<?> type, int size) {
-		array = (T[]) Array.newInstance(type, size);
+	public SimpleArray(int size) {
+		this.array = (T[]) new Object[size];
 	}
 
 	public void add(T model) {
@@ -17,24 +16,37 @@ public class SimpleArray<T> implements Iterable<T> {
 	}
 
 	public T get(int index) {
-		return array[checkIndex(index)];
+		if (checkIndex(index) == index) {
+			return array[index];
+		} else {
+			throw new IndexOutOfBoundsException();
+		}
 	}
 
 	public void set(int index, T model) {
 		array[checkIndex(index)] = model;
+		if (checkIndex(index) == index) {
+			array[index] = model;
+		} else {
+			throw new IndexOutOfBoundsException();
+		}
 	}
 
 	public void remove(int index) {
-		System.arraycopy(array, checkIndex(index) + 1, array, index, length - index - 1);
-		array[length - 1] = null;
-		length--;
+		if (checkIndex(index) == index) {
+			System.arraycopy(array, index + 1, array, index, length - index - 1);
+			array[length - 1] = null;
+			length--;
+		} else {
+			throw new IndexOutOfBoundsException();
+		}
 	}
 
 	public int checkIndex(int index) {
 		if (0 <= index && index < length) {
 			return index;
 		} else {
-			throw new IndexOutOfBoundsException();
+			return -1;
 		}
 	}
 
