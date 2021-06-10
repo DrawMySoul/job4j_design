@@ -4,8 +4,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SimpleArray<T> implements Iterable<T> {
-	private T[] array;
 	private int length = 0;
+	private T[] array;
 
 	public SimpleArray(int size) {
 		this.array = (T[]) new Object[size];
