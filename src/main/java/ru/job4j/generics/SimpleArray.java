@@ -33,10 +33,11 @@ public class SimpleArray<T> implements Iterable<T> {
 	}
 
 	public int checkIndex(int index, int length) {
-		if (index < 0 || index >= length) {
+		if (0 <= index && index < length) {
+			return index;
+		} else {
 			throw new IndexOutOfBoundsException();
 		}
-		return index;
 	}
 
 	@Override
