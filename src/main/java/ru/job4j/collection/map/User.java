@@ -13,33 +13,36 @@ public class User {
         this.birthday = birthday;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
+
+    public static int hash(Object key) {
+        int h ;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return children == user.children && Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
+    }
 
     public static void main(String[] args) {
         Calendar calendar = new GregorianCalendar(2000, Calendar.DECEMBER, 21);
         User user = new User("Mike", 1, calendar);
         User user1 = new User("Mike", 1, calendar);
-        User user2 = new User("Mike", 1, calendar);
 
-        /*System.out.println(user.hashCode());
-        System.out.println(Objects.hash(user) & (16 - 1));
+       Map<User, Object> map = new HashMap<>();
+       map.put(user, new Object());
+       map.put(user1, new Object());
 
-        System.out.println(user1.hashCode());
-        System.out.println(Objects.hash(user1) & (16 - 1));
+       for (Map.Entry<User, Object> entry : map.entrySet()) {
+           System.out.println(entry.getKey() + " " + entry.getValue());
+       }
 
-        System.out.println(user2.hashCode());
-        System.out.println(Objects.hash(user2) & (16 - 1));*/
-
-
-        System.out.println("user hashcode = " + user.hashCode());
-        System.out.print("index user = ");
-        System.out.println(Objects.hash(user) & (16 - 1));
-
-        System.out.println("user1 hashcode = " + user1.hashCode());
-        System.out.print("index user1 = ");
-        System.out.println(Objects.hash(user1) & (16 - 1));
-
-        System.out.println("user2 hashcode = " + user2.hashCode());
-        System.out.print("index user2 = ");
-        System.out.println(Objects.hash(user2) & (16 - 1));
     }
 }
