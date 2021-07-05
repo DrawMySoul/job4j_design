@@ -1,12 +1,8 @@
 package ru.job4j.collection.map;
 
+import java.util.*;
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
-
-public class SimpleMap<K, V> implements Map<K, V> {
+public class SimpleMap<K, V> implements Iterable<K> {
 
     private static final float LOAD_FACTOR = 0.75f;
 
@@ -18,7 +14,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     private MapEntry<K, V>[] table = new MapEntry[capacity];
 
-    @Override
+
     public boolean put(K key, V value) {
         if ((float) count / capacity >= LOAD_FACTOR) {
             expand();
@@ -39,7 +35,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private int indexFor(int hash) {
-        return hash & (capacity - 1);
+        return hash & capacity - 1;
     }
 
     private void expand() {
@@ -55,23 +51,25 @@ public class SimpleMap<K, V> implements Map<K, V> {
         modCount++;
     }
 
-    @Override
+
     public V get(K key) {
-        int index = indexFor(hash(key.hashCode()));
-        if (!Objects.isNull(table[index])) {
-            return table[index].value;
+        for (MapEntry<K, V> e : table) {
+            if (!Objects.isNull(e) && e.key.equals(key)) {
+                return e.value;
+            }
         }
         return null;
     }
 
-    @Override
+
     public boolean remove(K key) {
-        int index = indexFor(hash(key.hashCode()));
-        if (!Objects.isNull(table[index])) {
-            table[index] = null;
-            modCount++;
-            count--;
-            return true;
+        for (int i = 0; i < capacity; i++) {
+            if (table[i] != null && table[i].key.equals(key)) {
+                table[i] = null;
+                modCount++;
+                count--;
+                return true;
+            }
         }
         return false;
     }
