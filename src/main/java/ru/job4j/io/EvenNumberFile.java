@@ -13,11 +13,9 @@ public class EvenNumberFile {
 
             String[] numbers = text.toString().split(System.lineSeparator());
             for (String number : numbers) {
-                if (Integer.parseInt(number) % 2 == 0) {
-                    System.out.println(number + " is even");
-                } else {
-                    System.out.println(number + " is odd");
-                }
+                System.out.println(
+                        number + (Integer.parseInt(number) % 2 == 0 ? " is even" : " is odd")
+                );
             }
         } catch (Exception e) {
             e.printStackTrace();
