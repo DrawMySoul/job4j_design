@@ -11,8 +11,7 @@ import java.util.function.Predicate;
 public class Search {
     public static void main(String[] args) throws IOException {
         Path start = Paths.get(".");
-        //search(start, p -> p.toFile().getName().endsWith("txt"));
-        System.out.println(search(start, p -> p.toFile().getName().endsWith("txt")));
+        search(start, p -> p.toFile().getName().endsWith("txt"));
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) throws IOException {
