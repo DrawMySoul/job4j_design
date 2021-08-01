@@ -12,12 +12,13 @@ public class ArgsName {
 
 	private void parse(String[] args) {
 		for (String parameter : args) {
-			if (!parameter.matches(".\\w+\\=.+")) {
+			String[] keyAndValue = parameter.split("=");
+			if (keyAndValue.length != 2) {
 				throw new IllegalArgumentException("Parameter format is wrong. Should be -SOME_PARAMETER=VALUE");
 			}
 			values.put(
-				parameter.split("=")[0].replace("-", ""),
-				parameter.split("=")[1]
+				keyAndValue[0].replace("-", ""),
+				keyAndValue[1]
 			);
 		}
 	}
