@@ -10,9 +10,11 @@ import java.util.zip.ZipOutputStream;
 
 public class Zip {
 	public static void packFiles(List<File> sources, File target) {
+		Path rootPath = target.toPath().toAbsolutePath();
 		try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
 			for (File source : sources) {
-				zip.putNextEntry(new ZipEntry(source.getPath()));
+				Path currentPath = rootPath.relativize(source.toPath().toAbsolutePath());
+				zip.putNextEntry(new ZipEntry(currentPath.toFile().getPath()));
 				try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
 					zip.write(out.readAllBytes());
 				}
