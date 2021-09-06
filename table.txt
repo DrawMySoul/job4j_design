@@ -1,0 +1,3 @@
+name;age;mail
+mike;88;aaa@mail.com
+ivan;99;bbb@mail.com
