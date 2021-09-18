@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pc os="false" manufacturer="MSI" cost="1500">
+    <graphicsCard model="3080TI" videoMemorySize="8"/>
+    <stores>
+        <store>DNS</store>
+        <store>Nix</store>
+    </stores>
+</pc>
