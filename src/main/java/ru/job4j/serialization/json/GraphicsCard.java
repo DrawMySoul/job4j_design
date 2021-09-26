@@ -9,6 +9,14 @@ public class GraphicsCard {
 		this.videoMemorySize = videoMemorySize;
 	}
 
+	public String getModel() {
+		return model;
+	}
+
+	public int getVideoMemorySize() {
+		return videoMemorySize;
+	}
+
 	@Override
 	public String toString() {
 		return "GraphicsCard{"
