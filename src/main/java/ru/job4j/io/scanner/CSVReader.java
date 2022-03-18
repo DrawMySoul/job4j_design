@@ -59,6 +59,5 @@ public class CSVReader {
 		ArgsName argsName = ArgsName.of(args);
 		CSVReader csvReader = new CSVReader();
 		csvReader.readCSVFile(argsName.get("path"), argsName.get("delimiter"), argsName.get("filter"));
-		//csvReader.write(argsName.get("out"));
 	}
 }
