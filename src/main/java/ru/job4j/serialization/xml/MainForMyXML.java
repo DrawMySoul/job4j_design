@@ -19,6 +19,7 @@ public class MainForMyXML {
 			marshaller.marshal(pc, writer);
 			xml = writer.getBuffer().toString();
 		}
+		System.out.println(xml);
 
 		Unmarshaller unmarshaller = context.createUnmarshaller();
 		try (StringReader reader = new StringReader(xml)) {
