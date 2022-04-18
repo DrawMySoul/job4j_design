@@ -12,5 +12,5 @@ INSERT INTO teens(name, gender) VALUES ('Idaline', 'Female');
 INSERT INTO teens(name, gender) VALUES ('Danna', 'Female');
 INSERT INTO teens(name, gender) VALUES ('Gerri', 'Male');
 
-SELECT * FROM (SELECT * FROM teens WHERE teens.gender = 'Male') AS males
-CROSS JOIN (SELECT * FROM teens WHERE teens.gender = 'Female') AS females;
+SELECT * FROM teens t1 CROSS JOIN teens t2
+WHERE t1.gender != t2.gender;
