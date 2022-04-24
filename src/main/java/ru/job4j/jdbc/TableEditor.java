@@ -2,6 +2,7 @@ package ru.job4j.jdbc;
 
 import ru.job4j.io.Config;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -90,21 +91,18 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void main(String[] args) throws Exception {
-        Config config = new Config("./app.properties");
-        config.load();
-
         Properties properties = new Properties();
-        properties.setProperty("driver", config.value("hibernate.connection.driver_class"));
-        properties.setProperty("url", config.value("hibernate.connection.url"));
-        properties.setProperty("name", config.value("hibernate.connection.username"));
-        properties.setProperty("password", config.value("hibernate.connection.password"));
+        try (InputStream in = Config.class.getClassLoader().getResourceAsStream("app.properties")) {
+            properties.load(in);
+        }
+        System.out.println(properties);
 
-        try (TableEditor tableEditor = new TableEditor(properties)) {
+       /* try (TableEditor tableEditor = new TableEditor(properties)) {
             tableEditor.createTable("some_table");
             tableEditor.addColumn("some_table", "id", "text");
             tableEditor.renameColumn("some_table", "id", "name");
             tableEditor.dropColumn("some_table", "name");
             tableEditor.dropTable("some_table");
-        }
+        }*/
     }
 }
