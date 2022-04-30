@@ -25,7 +25,6 @@ public class ImportDB {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().map(s -> s.split(";"))
-                .filter(strings -> strings.length == 2)
                 .filter(this::chekStrings)
                 .forEach(strings -> users.add(new User(strings[0], strings[1])));
         } catch (IOException e) {
@@ -35,7 +34,11 @@ public class ImportDB {
     }
 
     private boolean chekStrings(String[] strings) {
-        if (!strings[0].matches("\\w+\\s\\w+") || !strings[1].matches(".+\\@.+\\..+")) {
+        if (strings.length < 2) {
+            throw new IllegalArgumentException("String contain less than 2 elements");
+        } else if (strings[0].isEmpty() || strings[1].isEmpty()) {
+            throw new IllegalArgumentException("Name or Email is empty");
+        } else if (!strings[0].matches("\\w+\\s\\w+") || !strings[1].matches(".+\\@.+\\..+")) {
             throw new IllegalArgumentException("Wrong data format");
         }
         return true;
