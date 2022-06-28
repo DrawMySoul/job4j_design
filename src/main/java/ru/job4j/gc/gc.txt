@@ -1,0 +1,45 @@
+Требуемая память для объекта без полей: x32bit OS = 8 byte, x64bit OS 16 byte(12 byte + смещение(4 byte))
+
+Требуемая память для одного объекта User(int age, String name, boolean isMarried) = 72 байта
+User:
+header = 12
+age int = 4                         = 17 + смещение(7) = 24
+isMarried boolean = 1
+
+   name String:
+        header = 12
+        coder byte = 1
+        hash int = 4                = 22 + смещение(2) = 24
+        hashIsZero boolean = 1
+        ref to char array = 4
+
+           Array char[2]:
+                 header = 12
+                 array length = 4   = 20 + смещение(4) = 24
+                 char 2 * 2 = 4
+
+
+-xmx1m -xms1m
+Очевидно, что в данных параметрах нет смысла запускать приложение, но было любопытно. Да действительно приложение не запустилось, получил сообщение "Too small maximum heap"
+
+-xmx2m -xms2m
+Хватает для запуска
+1 объект:         gc - не вызывается, OutOfMemory - падает
+
+-xmx4m -xms4m
+1 объект:         gc - не вызывается, OutOfMemory - не падает
+100 объектов:     gc - вызывается,    OutOfMemory - не падает
+1.000 объектов:   gc - вызывается,    OutOfMemory - не падает
+10.000 объектов:  gc - вызывается,    OutOfMemory - не падает
+20.000 объектов:  gc - вызывается,    OutOfMemory - падает
+
+-xmx6m -xms6m
+10.000 объектов:  gc - вызывается,    OutOfMemory - не падает
+20.000 объектов:  gc - вызывается,    OutOfMemory - не падает
+50.000 объектов:  gc - вызывается,    OutOfMemory - падает
+
+-xmx8m -xms8m
+10.000 объектов:  gc - вызывается,    OutOfMemory - не падает
+20.000 объектов:  gc - вызывается,    OutOfMemory - не падает
+50.000 объектов:  gc - вызывается,    OutOfMemory - не падает
+100.000 объектов: gc - вызывается,   OutOfMemory - падает
