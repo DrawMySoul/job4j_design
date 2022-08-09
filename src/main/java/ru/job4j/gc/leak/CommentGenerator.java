@@ -11,14 +11,11 @@ public class CommentGenerator implements Generate {
 
     public static final String SEPARATOR = System.lineSeparator();
 
-    private static List<Comment> comments = new ArrayList<>();
-
     public static final Integer COUNT = 50;
 
-    private static List<String> phrases;
-
+    private List<Comment> comments = new ArrayList<>();
+    private List<String> phrases;
     private UserGenerator userGenerator;
-
     private Random random;
 
     public CommentGenerator(Random random, UserGenerator userGenerator) {
@@ -35,7 +32,7 @@ public class CommentGenerator implements Generate {
         }
     }
 
-    public static List<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
@@ -46,9 +43,10 @@ public class CommentGenerator implements Generate {
         random.ints(0, phrases.size())
             .distinct().limit(3).forEach(ints::add);
         for (int i = 0; i < COUNT; i++) {
-            String comment = phrases.get(ints.get(0)) + SEPARATOR
-                + phrases.get(ints.get(1)) + SEPARATOR
-                + phrases.get(ints.get(2));
+            String comment = String.join(SEPARATOR,
+                phrases.get(ints.get(0)),
+                phrases.get(ints.get(1)),
+                phrases.get(ints.get(2)));
             comments.add(new Comment(comment,
                 userGenerator.randomUser()));
         }

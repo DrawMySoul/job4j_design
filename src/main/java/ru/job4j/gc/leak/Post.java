@@ -3,7 +3,7 @@ package ru.job4j.gc.leak;
 import java.util.List;
 
 public class Post {
-    private Integer id;
+    private int id;
 
     private String text;
 
@@ -20,7 +20,7 @@ public class Post {
         this.comments = comments;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -42,10 +42,5 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
     }
 }

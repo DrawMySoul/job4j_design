@@ -1,16 +1,25 @@
-hi
-ogo
-hi
-bye
-hi
-bye
-стоп
-hi
-hi
-hi
-продолжить
-hi
-aga
-hi
-bye
-закончить
+[0.012s][info][gc] Using Serial
+[4.284s][info][gc] GC(0) Pause Young (Allocation Failure) 4M->1M(15M) 3.779ms
+[4.472s][info][gc] GC(1) Pause Young (Allocation Failure) 6M->2M(15M) 5.368ms
+[23.532s][info][gc] GC(2) Pause Young (Allocation Failure) 7M->3M(15M) 2.812ms
+[40.201s][info][gc] GC(3) Pause Young (Allocation Failure) 7M->3M(15M) 1.674ms
+[40.212s][info][gc] GC(4) Pause Young (Allocation Failure) 7M->3M(15M) 0.528ms
+[40.224s][info][gc] GC(5) Pause Young (Allocation Failure) 7M->3M(15M) 0.409ms
+[40.234s][info][gc] GC(6) Pause Young (Allocation Failure) 7M->3M(15M) 0.484ms
+[40.244s][info][gc] GC(7) Pause Young (Allocation Failure) 7M->3M(15M) 0.443ms
+[40.253s][info][gc] GC(8) Pause Young (Allocation Failure) 7M->3M(15M) 0.321ms
+[40.258s][info][gc] GC(9) Pause Young (Allocation Failure) 7M->3M(15M) 0.318ms
+[40.262s][info][gc] GC(10) Pause Young (Allocation Failure) 7M->3M(15M) 0.377ms
+[40.266s][info][gc] GC(11) Pause Young (Allocation Failure) 7M->3M(15M) 0.289ms
+[72.556s][info][gc] GC(12) Pause Young (Allocation Failure) 7M->3M(15M) 0.692ms
+[112.571s][info][gc] GC(13) Pause Young (Allocation Failure) 7M->3M(15M) 0.766ms
+[116.722s][info][gc] GC(14) Pause Young (Allocation Failure) 7M->3M(15M) 0.566ms
+[116.726s][info][gc] GC(15) Pause Young (Allocation Failure) 7M->3M(15M) 0.390ms
+[116.729s][info][gc] GC(16) Pause Young (Allocation Failure) 7M->3M(15M) 0.466ms
+[116.733s][info][gc] GC(17) Pause Young (Allocation Failure) 7M->3M(15M) 0.385ms
+[116.736s][info][gc] GC(18) Pause Young (Allocation Failure) 7M->3M(15M) 0.394ms
+[116.740s][info][gc] GC(19) Pause Young (Allocation Failure) 7M->3M(15M) 0.510ms
+[116.743s][info][gc] GC(20) Pause Young (Allocation Failure) 7M->3M(15M) 0.339ms
+[116.747s][info][gc] GC(21) Pause Young (Allocation Failure) 7M->3M(15M) 0.494ms
+[131.593s][info][gc] GC(22) Pause Young (Allocation Failure) 7M->3M(15M) 0.740ms
+[171.613s][info][gc] GC(23) Pause Young (Allocation Failure) 7M->3M(15M) 0.663ms
