@@ -4,10 +4,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Menu {
-    public static final Integer ADD_POST = 1;
-    public static final Integer ADD_MANY_POST = 2;
-    public static final Integer SHOW_ALL_POSTS = 3;
-    public static final Integer DELETE_POST = 4;
+    public static final int ADD_POST = 1;
+    public static final int ADD_MANY_POST = 2;
+    public static final int SHOW_ALL_POSTS = 3;
+    public static final int DELETE_POST = 4;
 
     public static final String SELECT = "Выберите меню";
     public static final String COUNT = "Выберите количество создаваемых постов";
@@ -36,7 +36,7 @@ public class Menu {
         while (run) {
             System.out.println(MENU);
             System.out.println(SELECT);
-            int userChoice = Integer.parseInt(scanner.nextLine());
+            int userChoice = scanner.nextInt();
             System.out.println(userChoice);
             if (ADD_POST == userChoice) {
                 System.out.println(TEXT_OF_POST);
@@ -46,8 +46,8 @@ public class Menu {
                 System.out.println(TEXT_OF_POST);
                 String text = scanner.nextLine();
                 System.out.println(COUNT);
-                String count = scanner.nextLine();
-                for (int i = 0; i < Integer.parseInt(count); i++) {
+                int count = scanner.nextInt();
+                for (int i = 0; i < count; i++) {
                     createPost(commentGenerator, userGenerator, postStore, text);
                 }
             } else if (SHOW_ALL_POSTS == userChoice) {
