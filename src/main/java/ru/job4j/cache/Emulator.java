@@ -33,7 +33,7 @@ public class Emulator {
             } else if (userChoice == 2) {
                 System.out.print(FILE_NAME);
                 String fileName = scanner.next();
-                cache.put(fileName, cache.load(fileName));
+                cache.put(fileName, cache.get(fileName));
             } else if (userChoice == 3) {
                 System.out.print(FILE_NAME);
                 String value = cache.get(scanner.next());
