@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.*;
+import static ru.job4j.ood.srp.ReportAccounting.SALARY_FORMAT;
 
 class ReportAccountingTest {
     @Test
@@ -20,7 +21,7 @@ class ReportAccountingTest {
             .append(worker.getName()).append(";")
             .append(worker.getHired().getTime()).append(";")
             .append(worker.getFired().getTime()).append(";")
-            .append(String.format("%.2f", worker.getSalary())).append(";")
+            .append(String.format(SALARY_FORMAT, worker.getSalary())).append(";")
             .append(System.lineSeparator());
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }

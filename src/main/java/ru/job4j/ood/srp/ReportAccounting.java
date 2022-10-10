@@ -3,6 +3,7 @@ package ru.job4j.ood.srp;
 import java.util.function.Predicate;
 
 public class ReportAccounting implements Report {
+    public static final String SALARY_FORMAT = "%.2f";
 
     private Store store;
 
@@ -19,7 +20,7 @@ public class ReportAccounting implements Report {
             text.append(employee.getName()).append(";")
                 .append(employee.getHired().getTime()).append(";")
                 .append(employee.getFired().getTime()).append(";")
-                .append(String.format("%.2f", employee.getSalary())).append(";")
+                .append(String.format(SALARY_FORMAT, employee.getSalary())).append(";")
                 .append(System.lineSeparator());
         }
         return text.toString();
