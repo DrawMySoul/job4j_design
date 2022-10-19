@@ -3,7 +3,6 @@ package ru.job4j.ood.lsp.storage;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -39,15 +38,15 @@ class ControlQualityTest {
             )
         );
         foods.forEach(controller::control);
-        assertThat(shop.getStorage()).isNotNull()
+        assertThat(shop.getFoods()).isNotNull()
             .hasSize(2)
             .contains(foods.get(1), foods.get(2))
             .doesNotContain(foods.get(0), foods.get(3));
-        assertThat(warehouse.getStorage()).isNotNull()
+        assertThat(warehouse.getFoods()).isNotNull()
             .hasSize(1)
             .contains(foods.get(0))
             .doesNotContain(foods.get(1), foods.get(2), foods.get(3));
-        assertThat(trash.getStorage()).isNotNull()
+        assertThat(trash.getFoods()).isNotNull()
             .hasSize(1)
             .contains(foods.get(3))
             .doesNotContain(foods.get(0), foods.get(1), foods.get(2));
@@ -66,11 +65,11 @@ class ControlQualityTest {
             price);
         int expected = (int) (price * food.getDiscount());
         controller.control(food);
-        assertThat(shop.getStorage()).isNotNull()
+        assertThat(shop.getFoods()).isNotNull()
             .hasSize(1)
             .contains(food);
-        assertThat(warehouse.getStorage()).isNullOrEmpty();
-        assertThat(trash.getStorage()).isNullOrEmpty();
+        assertThat(warehouse.getFoods()).isNullOrEmpty();
+        assertThat(trash.getFoods()).isNullOrEmpty();
         assertThat(expected).isEqualTo(food.getPrice());
     }
 }

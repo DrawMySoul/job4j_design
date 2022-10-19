@@ -6,5 +6,5 @@ public interface Store {
 
     boolean add(Food food);
 
-    List<Food> getStorage();
+    List<Food> getFoods();
 }

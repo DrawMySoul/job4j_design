@@ -1,19 +1,23 @@
 package ru.job4j.ood.lsp.storage;
 
-import java.time.LocalDate;
-import java.util.function.DoublePredicate;
-
-import static java.time.temporal.ChronoUnit.DAYS;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractStore implements Store {
+    private final List<Food> storage = new ArrayList<>();
 
-    protected double getQuality(Food food) {
-        long expirationDate = DAYS.between(food.getCreateDate(), food.getExpiryDate());
-        long daysPassed = DAYS.between(food.getCreateDate(), LocalDate.now());
-        return (double) daysPassed * 100 / expirationDate;
+    protected abstract boolean check(Food food);
+
+    public boolean add(Food food) {
+        boolean result = false;
+        if (check(food)) {
+            storage.add(food);
+            result = true;
+        }
+        return result;
     }
 
-    protected boolean checkQuality(DoublePredicate filter, Food food) {
-        return filter.test(getQuality(food));
+    public List<Food> getFoods() {
+        return List.copyOf(storage);
     }
 }
