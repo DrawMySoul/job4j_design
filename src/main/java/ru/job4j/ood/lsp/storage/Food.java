@@ -53,10 +53,6 @@ public class Food {
         return discount;
     }
 
-    public void setPriceWithDiscount() {
-        this.price *= discount;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -11,52 +11,53 @@ class ControlQualityTest {
 
     @Test
     void whenControl() {
-        Store shop = new Shop();
-        Store warehouse = new Warehouse();
-        Store trash = new Trash();
+        QualityUtil foodQuality = new FoodQualityUtil();
+        Store shop = new Shop(foodQuality);
+        Store warehouse = new Warehouse(foodQuality);
+        Store trash = new Trash(foodQuality);
         ControlQuality controller = new ControlQuality(List.of(shop, warehouse, trash));
-        List<Food> foods = List.of(
-            new Food("bread",
-                LocalDate.now().minusDays(4),
-                LocalDate.now().plusDays(13),
-                10
-            ),
-            new Food("meat",
-                LocalDate.now().minusDays(4),
-                LocalDate.now().plusDays(4),
-                500
-            ),
-            new Food("chicken",
-                LocalDate.now().minusDays(4),
-                LocalDate.now().plusDays(1),
-                100
-            ),
-            new Food("banana",
-                LocalDate.now().minusDays(4),
-                LocalDate.now().minusDays(4),
-                60
-            )
+        Food bread = new Food("bread",
+            LocalDate.now().minusDays(4),
+            LocalDate.now().plusDays(13),
+            10
         );
+        Food meat = new Food("meat",
+            LocalDate.now().minusDays(4),
+            LocalDate.now().plusDays(4),
+            500
+        );
+        Food chicken = new Food("chicken",
+            LocalDate.now().minusDays(4),
+            LocalDate.now().plusDays(1),
+            100
+        );
+        Food banana = new Food("banana",
+            LocalDate.now().minusDays(4),
+            LocalDate.now().minusDays(4),
+            60
+        );
+        List<Food> foods = List.of(bread, meat, chicken, banana);
         foods.forEach(controller::control);
         assertThat(shop.getFoods()).isNotNull()
             .hasSize(2)
-            .contains(foods.get(1), foods.get(2))
-            .doesNotContain(foods.get(0), foods.get(3));
+            .contains(meat, chicken)
+            .doesNotContain(bread, banana);
         assertThat(warehouse.getFoods()).isNotNull()
             .hasSize(1)
-            .contains(foods.get(0))
-            .doesNotContain(foods.get(1), foods.get(2), foods.get(3));
+            .contains(bread)
+            .doesNotContain(meat, chicken, banana);
         assertThat(trash.getFoods()).isNotNull()
             .hasSize(1)
-            .contains(foods.get(3))
-            .doesNotContain(foods.get(0), foods.get(1), foods.get(2));
+            .contains(banana)
+            .doesNotContain(bread, meat, chicken);
     }
 
     @Test
     void whenQualityLess75AndMore100ThenFoodShouldBeInShopAndChangePrice() {
-        Store shop = new Shop();
-        Store warehouse = new Warehouse();
-        Store trash = new Trash();
+        QualityUtil foodQuality = new FoodQualityUtil();
+        Store shop = new Shop(foodQuality);
+        Store warehouse = new Warehouse(foodQuality);
+        Store trash = new Trash(foodQuality);
         ControlQuality controller = new ControlQuality(List.of(shop, warehouse, trash));
         int price = 1000;
         Food food = new Food("food",
