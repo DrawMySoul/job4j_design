@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarParking implements Parking {
-    private static final int DEFAULT_CAR_SIZE = 1;
     private final int passengerCarsLimit;
     private final int trucksLimit;
-    private final List<Car> passengerCars = new ArrayList<>();
-    private final List<Car> trucks = new ArrayList<>();
+    private final List<Car> passengerCars;
+    private final List<Car> trucks;
 
     public CarParking(int passengerCarsLimit, int trucksLimit) {
+        this.passengerCars = new ArrayList<>(passengerCarsLimit);
+        this.trucks = new ArrayList<>(trucksLimit);
         this.passengerCarsLimit = passengerCarsLimit;
         this.trucksLimit = trucksLimit;
     }
@@ -18,14 +19,14 @@ public class CarParking implements Parking {
     @Override
     public boolean parkCar(Car car) {
         boolean result = false;
-        if (car.getSize() == DEFAULT_CAR_SIZE && passengerCars.size() < passengerCarsLimit) {
+        if (car.getSize() == PassengerCar.PASSENGER_SIZE && passengerCars.size() < passengerCarsLimit) {
             passengerCars.add(car);
             result = true;
-        } else if (car.getSize() > DEFAULT_CAR_SIZE && trucks.size() < trucksLimit) {
+        } else if (car.getSize() > PassengerCar.PASSENGER_SIZE && trucks.size() < trucksLimit) {
             trucks.add(car);
             result = true;
         } else if (
-            car.getSize() > DEFAULT_CAR_SIZE
+            car.getSize() > PassengerCar.PASSENGER_SIZE
                 && trucks.size() >= trucksLimit
                 && passengerCarsLimit - passengerCars.size() >= car.getSize()
         ) {

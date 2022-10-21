@@ -7,7 +7,7 @@ public class Truck implements Car {
     private String licencePlate;
 
     public Truck(int size, String licencePlate) {
-        if (size <= 1) {
+        if (size <= PassengerCar.PASSENGER_SIZE) {
             throw new IllegalArgumentException("Invalid Truck size. Size should be more than 1");
         }
         this.size = size;

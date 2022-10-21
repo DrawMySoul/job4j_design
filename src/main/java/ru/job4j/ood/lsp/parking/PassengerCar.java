@@ -3,7 +3,7 @@ package ru.job4j.ood.lsp.parking;
 import java.util.Objects;
 
 public class PassengerCar implements Car {
-    private int size = 1;
+    public static final int PASSENGER_SIZE = 1;
     private String licencePlate;
 
     public PassengerCar(String licencePlate) {
@@ -12,7 +12,7 @@ public class PassengerCar implements Car {
 
     @Override
     public int getSize() {
-        return size;
+        return PASSENGER_SIZE;
     }
 
     @Override
@@ -29,11 +29,11 @@ public class PassengerCar implements Car {
             return false;
         }
         PassengerCar that = (PassengerCar) o;
-        return size == that.size && Objects.equals(licencePlate, that.licencePlate);
+        return Objects.equals(licencePlate, that.licencePlate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(size, licencePlate);
+        return Objects.hash(PASSENGER_SIZE, licencePlate);
     }
 }
