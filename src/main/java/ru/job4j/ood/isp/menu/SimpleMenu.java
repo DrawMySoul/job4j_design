@@ -27,10 +27,7 @@ public class SimpleMenu implements Menu {
 
     @Override
     public Optional<MenuItemInfo> select(String itemName) {
-        return Optional.ofNullable(
-            findItem(itemName).map(item -> new MenuItemInfo(item.menuItem, item.number))
-                .orElseThrow(() -> new NoSuchElementException("wrong item"))
-        );
+        return findItem(itemName).map(item -> new MenuItemInfo(item.menuItem, item.number));
     }
 
     @Override

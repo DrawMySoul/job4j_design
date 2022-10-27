@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -15,7 +14,7 @@ class SimpleMenuTest {
     private static final String NEW_LINE = System.lineSeparator();
 
     @Test
-    public void whenAddThenReturnSame() {
+    void whenAddThenReturnSame() {
         Menu menu = new SimpleMenu();
         menu.add(Menu.ROOT, "Сходить в магазин", STUB_ACTION);
         menu.add(Menu.ROOT, "Покормить собаку", STUB_ACTION);
@@ -67,9 +66,7 @@ class SimpleMenuTest {
         Menu menu = new SimpleMenu();
         menu.add(Menu.ROOT, "Изучить модуль ISP", STUB_ACTION);
         menu.add("Изучить модуль ISP", "Выполнить задание: 0. Принцип разделения интерфейсов", STUB_ACTION);
-        assertThatThrownBy(() -> menu.select("Выполнить задание: 1. Создать меню."))
-            .isInstanceOf(NoSuchElementException.class)
-            .message();
+        assertThat(menu.select("Выполнить задание: 1. Создать меню.")).isNotPresent();
     }
 
     @Test
@@ -87,11 +84,11 @@ class SimpleMenuTest {
         printer.print(menu);
         StringBuilder expected = new StringBuilder();
         expected.append("1.Сходить в магазин").append(NEW_LINE)
-            .append("---- 1.1.Купить продукты").append(NEW_LINE)
-            .append("-------- 1.1.1.Купить хлеб").append(NEW_LINE)
+            .append("----1.1.Купить продукты").append(NEW_LINE)
+            .append("--------1.1.1.Купить хлеб").append(NEW_LINE)
             .append("2.Изучить модуль ISP").append(NEW_LINE)
-            .append("---- 2.1.Выполнить задание: 0. Принцип разделения интерфейсов").append(NEW_LINE)
-            .append("---- 2.2.Выполнить задание: 1. Создать меню.").append(NEW_LINE);
+            .append("----2.1.Выполнить задание: 0. Принцип разделения интерфейсов").append(NEW_LINE)
+            .append("----2.2.Выполнить задание: 1. Создать меню.").append(NEW_LINE);
         assertThat(out.toString()).hasToString(expected.toString());
     }
 
