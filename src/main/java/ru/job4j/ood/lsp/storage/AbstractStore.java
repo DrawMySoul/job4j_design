@@ -20,4 +20,8 @@ public abstract class AbstractStore implements Store {
     public List<Food> getFoods() {
         return List.copyOf(storage);
     }
+
+    public void removeFoods() {
+        storage.clear();
+    }
 }
